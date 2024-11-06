@@ -18,14 +18,5 @@ public class CurrentAccount extends Account{
                 ", overdraftLimit=" + overdraftLimit);
     }
 
-    /*
-    public void displayDetails() {
-        System.out.println("CurrentAccount{" +
-                "accountNumber=" + getAccountNumber() +
-                ", accountHolderName='" + getAccountHolderName() + '\'' +
-                ", balance=" + getBalance() +
-                ", overdraftLimit=" + overdraftLimit +
-                '}');
-    }
-    */
+
 }

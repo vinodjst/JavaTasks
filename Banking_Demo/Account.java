@@ -31,7 +31,7 @@ public class Account {
 
     public void deposit(double amount){
         balance += amount;
-        //System.out.println("Deposit Successful!");
+        System.out.println("Deposit Successful!");
     }
 
     public void withdraw(double amount){
@@ -53,14 +53,5 @@ public class Account {
                 ", balance=" + balance
                 );
     }
-
-    /*
-    public void displayDetails(){
-        System.out.println("Account{" +
-                "accountNumber=" + accountNumber +
-                ", accountHolderName='" + accountHolderName + '\'' +
-                ", balance=" + balance +
-                '}');
-    }*/
 
 }
