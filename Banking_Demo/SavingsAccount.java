@@ -18,14 +18,5 @@ public class SavingsAccount extends Account{
                 ", interestRate=" + interestRate);
     }
 
-    /*
-    public void displayDetails() {
-        System.out.println("SavingsAccount{" +
-                "accountNumber=" + getAccountNumber() +
-                ", accountHolderName='" + getAccountHolderName() + '\'' +
-                ", balance=" + getBalance() +
-                ", interestRate=" + interestRate +
-                '}');
-    }
-    */
+
 }
