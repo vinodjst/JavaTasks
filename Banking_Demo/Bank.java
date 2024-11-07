@@ -160,6 +160,7 @@ public class Bank {
     }
 
     public static void main(String[] args) {
+        System.out.println("---------------Welcome Banking------------");
         Bank b = new Bank();
         b.manageAccounts();
     }
