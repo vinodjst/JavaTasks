@@ -14,8 +14,15 @@ public class SavingsAccount extends Account{
     @Override
     public void displayDetails() {
         super.displayDetails();
+        System.out.println("interest Rate details");
         System.out.println(
+
                 ", interestRate=" + interestRate);
+    }
+    @Override
+    public String toString(){
+        return "SAVINGS ACCOUNT :"+getAccountNumber()+","+getAccountHolderName()
+                +","+getBalance()+","+getInterestRate();
     }
 
 

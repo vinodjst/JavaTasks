@@ -17,6 +17,9 @@ public class CurrentAccount extends Account{
         System.out.println(
                 ", overdraftLimit=" + overdraftLimit);
     }
+    public String toString(){
+        return "Current ACCOUNT :"+getOverdraftLimit()+getAccountNumber()+getAccountHolderName()+getBalance();
+    }
 
 
 }
