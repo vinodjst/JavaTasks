@@ -18,5 +18,13 @@ public class SavingsAccount extends Account{
                 ", interestRate=" + interestRate);
     }
 
-
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "accountNumber=" + getAccountNumber() +
+                ", accountHolderName='" + getAccountHolderName() + '\'' +
+                ", balance=" + getBalance() +
+                ", interestRate=" + interestRate +
+                '}';
+    }
 }

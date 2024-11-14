@@ -1,10 +1,14 @@
 package Assignment_Java.Banking_Demo;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
 public class Bank {
+
+    InputValidator inp = new InputValidator();
 
     Scanner sc = new Scanner(System.in);
 
@@ -16,7 +20,8 @@ public class Bank {
         System.out.println("1.Savings Account");
         System.out.println("2.Current Account");
 
-        int choice = sc.nextInt();
+        int choice = inp.getValidInputInt(sc);
+        //System.out.println(choice);
         switch (choice){
             case 1:
                 handleSavingsAccount();
@@ -66,12 +71,13 @@ public class Bank {
         }
     }
 
-
     private void handleSavingsAccount() {
 
+        //InputValidator inp = new InputValidator();
+
         System.out.println("Enter Account Number:");
-        int accountNumber = sc.nextInt();
-        sc.nextLine();
+        int accountNumber = inp.getValidInputInt(sc);
+        //sc.nextLine();
 
         if(validateAccount(accountNumber)){
             System.out.println("Login Successful!");
@@ -80,13 +86,13 @@ public class Bank {
             System.err.println("Account not found!");
             System.out.println("Please fill out the details to create an account");
             System.out.println("Enter Account Holder Name:");
-            String accountHolderName = sc.nextLine();
+            String accountHolderName = inp.getValidInputString(sc);
 
             System.out.println("Enter Initial Balance:");
-            double balance = sc.nextDouble();
+            double balance = inp.getValidInputDouble(sc);
 
             System.out.println("Enter Interest Rate:");
-            double interestRate = sc.nextDouble();
+            double interestRate = inp.getValidInputDouble(sc);
 
             SavingsAccount sa = new SavingsAccount();
 
@@ -94,6 +100,8 @@ public class Bank {
             sa.setAccountHolderName(accountHolderName);
             sa.setBalance(balance);
             sa.setInterestRate(interestRate);
+
+            appendToFile(sa.toString());
 
             System.out.println("Account created successfully!");
             boolean flag = true;
@@ -105,18 +113,18 @@ public class Bank {
                 System.out.println("4.Exit");
 
 
-                int choice = sc.nextInt();
+                int choice = inp.getValidInputInt(sc);
 
                 switch (choice) {
                     case 1:
                         System.out.println("Please Enter your deposit amount: ");
-                        double deposit = sc.nextDouble();
+                        double deposit = inp.getValidInputDouble(sc);
                         sa.deposit(deposit);
                         break;
 
                     case 2:
                         System.out.println("Please Enter your withdraw amount: ");
-                        double withdraw = sc.nextDouble();
+                        double withdraw = inp.getValidInputDouble(sc);
                         sa.withdraw(withdraw);
                         break;
 
@@ -141,8 +149,10 @@ public class Bank {
 
     private void handleCurrentAccount() {
 
+        //InputValidator inp = new InputValidator();
+
         System.out.println("Enter Account Number:");
-        int accountNumber = sc.nextInt();
+        int accountNumber = inp.getValidInputInt(sc);
         sc.nextLine();
 
         if(validateAccount(accountNumber)){
@@ -152,13 +162,13 @@ public class Bank {
             System.err.println("Account not found!");
             System.out.println("Please fill out the details to create an account");
             System.out.println("Enter Account Holder Name:");
-            String accountHolderName = sc.nextLine();
+            String accountHolderName = inp.getValidInputString(sc);
 
             System.out.println("Enter Initial Balance:");
-            double balance = sc.nextDouble();
+            double balance = inp.getValidInputDouble(sc);
 
             System.out.println("Enter Overdraft Limit:");
-            double overdraftLimit = sc.nextDouble();
+            double overdraftLimit = inp.getValidInputDouble(sc);
 
             CurrentAccount ca = new CurrentAccount();
 
@@ -166,6 +176,10 @@ public class Bank {
             ca.setAccountHolderName(accountHolderName);
             ca.setBalance(balance);
             ca.setOverdraftLimit(overdraftLimit);
+
+            appendToFile(ca.toString());
+
+            //appendToFile("Account Number : "+ accountNumber+ " Account Holder Name : "+accountHolderName+ " Balance : "+balance+" Overdraft Limit : "+overdraftLimit);
 
             System.out.println("Account created successfully!");
 
@@ -177,18 +191,18 @@ public class Bank {
                 System.out.println("3.Display details");
                 System.out.println("4.Exit");
 
-                int choice = sc.nextInt();
+                int choice = inp.getValidInputInt(sc);
 
                 switch (choice) {
                     case 1:
                         System.out.println("Please Enter your deposit amount: ");
-                        double deposit = sc.nextDouble();
+                        double deposit = inp.getValidInputDouble(sc);
                         ca.deposit(deposit);
                         break;
 
                     case 2:
                         System.out.println("Please Enter your withdraw amount: ");
-                        double withdraw = sc.nextDouble();
+                        double withdraw = inp.getValidInputDouble(sc);
                         ca.withdraw(withdraw);
                         break;
 
@@ -207,6 +221,17 @@ public class Bank {
                         break;
                 }
             }
+        }
+    }
+
+    private static void appendToFile(String text){
+        try {
+            FileWriter fw = new FileWriter("UserInputs_Test.txt", true);
+            fw.write(text+System.lineSeparator());
+            fw.flush();
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file.");
+            e.fillInStackTrace();
         }
     }
 
