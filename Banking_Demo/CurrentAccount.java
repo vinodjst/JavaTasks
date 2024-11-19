@@ -18,5 +18,14 @@ public class CurrentAccount extends Account{
                 ", overdraftLimit=" + overdraftLimit);
     }
 
+    @Override
+    public String toString() {
+        return "CurrentAccount{" +
+                "accountNumber=" + getAccountNumber() +
+                ", accountHolderName='" + getAccountHolderName() + '\'' +
+                ", balance=" + getBalance() +
+                ", overdraftLimit=" + overdraftLimit +
+                '}';
+    }
 
 }
